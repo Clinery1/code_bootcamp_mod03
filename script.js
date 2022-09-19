@@ -31,10 +31,12 @@ function generate_password() {
     for (let i=0;i<length;i+=1) {
         let choices=[];
         if (special_chars) {
-            choices.push(int_rand_range(32,48));
-            choices.push(int_rand_range(58,65));
-            choices.push(int_rand_range(91,97));
-            choices.push(int_rand_range(123,127));
+            let choices2=[];
+            choices2.push(int_rand_range(32,48));
+            choices2.push(int_rand_range(58,65));
+            choices2.push(int_rand_range(91,97));
+            choices2.push(int_rand_range(123,127));
+            choices.push(choices2[int_rand_range(0,4)]);
         }
         if (uppercase) {
             choices.push(int_rand_range(65,91));
@@ -50,7 +52,7 @@ function generate_password() {
             return;
         }
         // String.fromCodePoint(Math.floor((Math.random()*94))+32)
-        password+=String.fromCodePoint(choices[Math.floor(Math.random()*choices.length)]);
+        password+=String.fromCodePoint(choices[int_rand_range(0,choices.length)]);
     }
     return password;
 }
